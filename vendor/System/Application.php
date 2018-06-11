@@ -19,7 +19,29 @@ class Application
 	 */
 	public function __construct(File $file)
 	{
+		$this->registerClasses();
 		$this->share('file', $file);
+	}
+
+	/**
+	 * register all classes
+	 *
+	 * @return void
+	 */
+	private function registerClasses()
+	{
+		spl_autoload_register([$this,"loadClass"]);
+	}
+
+	/**
+	 * load the class
+	 *
+	 * @param string $class
+	 * @return void
+	 */
+	public function loadClass($class)
+	{
+		
 	}
 
 	/**
