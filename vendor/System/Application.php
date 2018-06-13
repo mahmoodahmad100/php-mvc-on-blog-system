@@ -21,6 +21,7 @@ class Application
 	{
 		$this->registerClasses();
 		$this->share('file', $file);
+		$this->loadHelpers();
 	}
 
 	/**
@@ -52,6 +53,16 @@ class Application
 
 		if($this->file->exists($file))
 			$this->file->require($file);
+	}
+
+	/**
+	 * loading the helpers
+	 * 
+	 * @return void
+	 */
+	private function loadHelpers()
+	{
+		$this->file->require($this->file->toVendor('helpers.php'));
 	}
 
 	/**
