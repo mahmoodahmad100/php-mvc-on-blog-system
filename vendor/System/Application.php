@@ -7,7 +7,7 @@ class Application
 	/**
 	 * container
 	 *
-	 * @var array $container
+	 * @var array
 	 */
 	private $container = [];
 
@@ -22,8 +22,6 @@ class Application
 		$this->share('file', $file);
 		$this->registerClasses();
 		$this->loadHelpers();
-
-		pre($this->file);
 	}
 
 	/**
@@ -57,7 +55,18 @@ class Application
 	 */
 	public function get($key)
 	{
-		return isset($this->container[$key]) ? $this->container[$key] : null;
+		return $this->isShared($key) ? $this->container[$key] : null;
+	}
+
+	/**
+	 * checkout that the key exists or not
+	 * 
+	 * @param string $key
+	 * @return bool
+	 */
+	private function isShared($key)
+	{
+		return isset($this->container[$key]);
 	}
 
 	/**
