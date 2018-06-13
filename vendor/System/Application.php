@@ -22,6 +22,8 @@ class Application
 		$this->share('file', $file);
 		$this->registerClasses();
 		$this->loadHelpers();
+
+		pre($this->file);
 	}
 
 	/**
