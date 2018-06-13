@@ -19,9 +19,43 @@ class Application
 	 */
 	public function __construct(File $file)
 	{
-		$this->registerClasses();
 		$this->share('file', $file);
+		$this->registerClasses();
 		$this->loadHelpers();
+	}
+
+	/**
+	 * set a new item to the container
+	 *
+	 * @param string $key
+	 * @param mixid $value
+	 * @return void
+	 */
+	public function share($key, $value)
+	{	
+		$this->container[$key] = $value;
+	}
+
+	/**
+	 * get an item from the container
+	 * 
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function __get($key)
+	{
+		return $this->get($key);
+	}
+
+	/**
+	 * get an item from the container
+	 * 
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function get($key)
+	{
+		return isset($this->container[$key]) ? $this->container[$key] : null;
 	}
 
 	/**
@@ -63,40 +97,6 @@ class Application
 	private function loadHelpers()
 	{
 		$this->file->require($this->file->toVendor('helpers.php'));
-	}
-
-	/**
-	 * set a new item to the container
-	 *
-	 * @param string $key
-	 * @param mixid $value
-	 * @return void
-	 */
-	public function share($key, $value)
-	{	
-		$this->container[$key] = $value;
-	}
-
-	/**
-	 * get an item from the container
-	 * 
-	 * @param string $key
-	 * @return mixed
-	 */
-	public function __get($key)
-	{
-		return $this->get($key);
-	}
-
-	/**
-	 * get an item from the container
-	 * 
-	 * @param string $key
-	 * @return mixed
-	 */
-	public function get($key)
-	{
-		return isset($this->container[$key]) ? $this->container[$key] : null;
 	}
 
 }
