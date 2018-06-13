@@ -41,7 +41,17 @@ class Application
 	 */
 	public function loadClass($class)
 	{
-		
+		if(strpos($class, "App") === 0)
+		{
+			$file = $this->file->to($class . '.php');
+		}
+		else
+		{
+			$file = $this->file->toVendor($class . '.php');
+		}
+
+		if($this->file->exists($file))
+			$this->file->require($file);
 	}
 
 	/**
@@ -55,4 +65,27 @@ class Application
 	{	
 		$this->container[$key] = $value;
 	}
+
+	/**
+	 * get an item from the container
+	 * 
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function __get($key)
+	{
+		return $this->get($key);
+	}
+
+	/**
+	 * get an item from the container
+	 * 
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function get($key)
+	{
+		return isset($this->container[$key]) ? $this->container[$key] : null;
+	}
+
 }
