@@ -25,6 +25,16 @@ class Application
 	}
 
 	/**
+	 * run the application
+	 * 
+	 * @return void
+	 */
+	public function run()
+	{
+		
+	}
+
+	/**
 	 * set a new item to the container
 	 *
 	 * @param string $key
@@ -55,7 +65,13 @@ class Application
 	 */
 	public function get($key)
 	{
-		return $this->isShared($key) ? $this->container[$key] : null;
+		if(!$this->isShared($key)){
+			if($this->isAlias($key))
+				$this->share($key,$this->createObjectFromAlias($key));
+			else
+				die("this class not in the aliases");
+		}
+		return $this->container[$key];
 	}
 
 	/**
@@ -117,6 +133,31 @@ class Application
 			'db'			=> 'System\\Database',
 			'view'			=> 'System\\View\\ViewFactory',
 		];
+	}
+
+	/**
+	 * checking whether in the aliases array or not
+	 *
+	 * @param string $alias
+	 * @return bool
+	 */
+	private function isAlias($alias)
+	{
+		$aliases = $this->aliases();
+		return isset($aliases[$alias]);
+	}
+
+	/**
+	 * create object from the alias
+	 *
+	 * @param string $alias
+	 * @return object
+	 */
+	private function createObjectFromAlias($alias)
+	{
+		$aliases = $this->aliases();
+		$alias   = $aliases[$alias];
+		return new $alias($this);
 	}
 
 	/**
