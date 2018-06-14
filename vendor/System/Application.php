@@ -101,6 +101,25 @@ class Application
 	}
 
 	/**
+	 * alias classes
+	 *
+	 * @return array
+	 */
+	private function aliases()
+	{
+		return [
+			'request'		=> 'System\\Http\\Request',
+			'response'		=> 'System\\Http\\Response',
+			'load'			=> 'System\\Loader',
+			'session'		=> 'System\\Session',
+			'cookie'		=> 'System\\Cookie',
+			'html'			=> 'System\\Html',
+			'db'			=> 'System\\Database',
+			'view'			=> 'System\\View\\ViewFactory',
+		];
+	}
+
+	/**
 	 * loading the helpers
 	 * 
 	 * @return void
