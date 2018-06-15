@@ -55,7 +55,7 @@ class Session
 	 */
 	public function get($key)
 	{
-		return $_SESSION[$key];
+		return get_array($_SESSION, $key);
 	}
 
 	/**
