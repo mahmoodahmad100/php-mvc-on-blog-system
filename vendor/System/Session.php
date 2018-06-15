@@ -23,4 +23,16 @@ class Session
 		$this->app = $app;
 	}
 
+	/**
+	 * start the session
+	 *
+	 * @return void
+	 */
+	public function start()
+	{
+		ini_set('session.use_only_cookies', 1);
+		if(!session_id())
+			session_start();
+	}
+
 }
