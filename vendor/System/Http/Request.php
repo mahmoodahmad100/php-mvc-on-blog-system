@@ -13,6 +13,13 @@ class Request
 	private $app;
 
 	/**
+	 * url 
+	 * 
+	 * @var string
+	 */
+	private $url;
+
+	/**
 	 * setting up
 	 *
 	 * @param \System\Application $app
@@ -21,5 +28,15 @@ class Request
 	public function __construct(Application $app)
 	{
 		$this->app = $app;
+	}
+
+	/**
+	 * prepare the URL
+	 *
+	 * @return void
+	 */
+	public function prepareUrl()
+	{
+		
 	}
 }
