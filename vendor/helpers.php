@@ -26,7 +26,7 @@ if(!function_exists('get_array'))
 	 * @param mixed          $default
 	 * @return mixed
 	 */
-	get_array($array, $key, $default = null)
+	function get_array($array, $key, $default = null)
 	{
 		return isset($array[$key]) ? $array[$key] : $default;
 	}
