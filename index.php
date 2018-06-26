@@ -7,3 +7,4 @@ use System\Application;
 use System\File;
 
 $app = new Application(new File(__DIR__));
+$app->run();

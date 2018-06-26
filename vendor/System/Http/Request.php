@@ -37,7 +37,7 @@ class Request
 	 */
 	public function prepareUrl()
 	{
-		
+		pre($_SERVER);
 	}
 
 	/**
